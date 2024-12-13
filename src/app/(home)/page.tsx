@@ -3,9 +3,11 @@ import { Suspense, useEffect, useState } from "react";
 import FilterForm from "../../components/FilterForm/FilterForm";
 import { IVehicle } from "../../types/global";
 import Loader from "../../components/Loader/Loader";
+import ErrorTab from "@/src/components/ErrorTab/ErrorTab";
 
 const Home = () => {
   const [vehicles, setVehicles] = useState<IVehicle[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMakes = async () => {
@@ -14,8 +16,10 @@ const Home = () => {
         const response = await fetch(URL);
         const data = await response.json();
         setVehicles(data.Results || []);
+        setError(null);
       } catch (error) {
         console.error("Failed to fetch vehicle makes:", error);
+        setError("Failed to fetch vehicle makes. Please try again later.");
       }
     };
 
@@ -30,7 +34,7 @@ const Home = () => {
             Find Your Car
           </h1>
 
-          <FilterForm makes={vehicles} />
+          {error ? <ErrorTab /> : <FilterForm makes={vehicles} />}
         </div>
       </div>
     </Suspense>

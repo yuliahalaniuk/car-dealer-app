@@ -1,16 +1,13 @@
 import ErrorTab from "@/src/components/ErrorTab/ErrorTab";
 import ModelsList from "@/src/components/ModelsList/ModelsList";
 import { fetchVehicleModels } from "@/src/utils/fetchVehicleModels";
+import { generateYears } from "@/src/utils/generateYears";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const exampleMakes = ["440", "441", "442", "448"];
 
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: currentYear - 2015 + 1 }, (_, i) =>
-    (2015 + i).toString()
-  );
-
+  const years = generateYears();
   const staticParams = exampleMakes.flatMap((makeId) =>
     years.map((year) => ({
       makeId,
