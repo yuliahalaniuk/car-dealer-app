@@ -35,7 +35,7 @@ npm install
 Create a .env.local file in the root directory and add the following environment variables:
 
 ```
-NEXT_PUBLIC_API_URL=
+NEXT_PUBLIC_API_URL=https://vpic.nhtsa.dot.gov/api/vehicles
 ```
 
 ### 4. Run the development server
