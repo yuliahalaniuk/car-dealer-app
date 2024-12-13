@@ -3,9 +3,8 @@
 
 This is a car dealer application built using **Next.js**, **React Hook Form**, **Yup**, **TypeScript**, and **Tailwind CSS**. The application allows users to filter vehicles by make and model year and view the results on a separate page.
 
-![Image](/image/sample.webp "This is a sample image.")
-![Image](/image/sample.webp "This is a sample image.")
-
+![Car Dealer](./public/images/home.png)
+![Car Dealer](./public/images/model.png)
 ## Features
 
 - **Filter vehicles** by make and model year.
@@ -65,3 +64,22 @@ Once the filters are applied, the user can navigate to the result page, which dy
  - Yup
  - TypeScript
  - ESLint & Prettier
+
+ ## Folder Structure
+The project is organized as follows:
+
+>  **/app**
+  >> **/(home)**    // Home page with filter form
+  >
+  >> **/result/[makeId]/[year]**   // Result page showing vehicle models
+  >
+  >> **/loading.tsx** 
+  >
+  >> **/layout.tsx** 
+  
+>  **/components** 
+>
+>  **/utils**
+>
+>  **/types**
+  

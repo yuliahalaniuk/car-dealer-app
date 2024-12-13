@@ -1,8 +1,8 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import FilterForm from "../components/FilterForm/FilterForm";
-import { IVehicle } from "../types/global";
-import Loader from "../components/Loader/Loader";
+import FilterForm from "../../components/FilterForm/FilterForm";
+import { IVehicle } from "../../types/global";
+import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   const [vehicles, setVehicles] = useState<IVehicle[]>([]);
