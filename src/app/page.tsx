@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import FilterForm from "../components/FilterForm/FilterForm";
 import { IVehicle } from "../types/global";
+import Loader from "../components/Loader/Loader";
 
 const Home = () => {
   const [vehicles, setVehicles] = useState<IVehicle[]>([]);
@@ -21,15 +22,18 @@ const Home = () => {
     fetchMakes();
   }, []);
 
-
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">Find Your Car</h1>
+    <Suspense fallback={<Loader />}>
+      <div className="min-h-screen bg-gray-100 p-8">
+        <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-md p-8">
+          <h1 className="text-2xl font-bold text-gray-800 mb-6">
+            Find Your Car
+          </h1>
 
-        <FilterForm makes={vehicles} />
+          <FilterForm makes={vehicles} />
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
 

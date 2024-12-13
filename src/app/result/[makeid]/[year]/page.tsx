@@ -1,21 +1,7 @@
 import ErrorTab from "@/src/components/ErrorTab/ErrorTab";
 import ModelsList from "@/src/components/ModelsList/ModelsList";
-import { VehicleModel } from "@/src/types/global";
+import { fetchVehicleModels } from "@/src/utils/fetchVehicleModels";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-
-async function fetchVehicleModels(makeId: string, year: string) {
-  const URL = `${process.env.NEXT_PUBLIC_API_URL}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`;
-
-  const res = await fetch(URL);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch vehicle models");
-  }
-
-  const data = await res.json();
-  return data.Results as VehicleModel[];
-}
 
 export async function generateStaticParams() {
   const exampleMakes = ["440", "441", "442", "448"];
@@ -55,14 +41,12 @@ export default async function ResultPage({
     }
 
     return (
-      <Suspense fallback={<div>Loading vehicle models...</div>}>
-        <div className="min-h-screen bg-gray-100 p-8">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
-            Vehicle Models for Make ID: {makeid} and Year: {year}
-          </h1>
-          <ModelsList models={models} />
-        </div>
-      </Suspense>
+      <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          Vehicle Models for Make ID: {makeid} and Year: {year}
+        </h1>
+        <ModelsList models={models} />
+      </div>
     );
   } catch {
     return <ErrorTab />;
